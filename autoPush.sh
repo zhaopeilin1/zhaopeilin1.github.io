@@ -1,6 +1,6 @@
- #/bin/bash
+#/bin/bash
 cd /home/pi/all.git/zhaopeilin1.github.io
-ifconfig | grep broadcast >> README.md 
-git add README.md && git  commit -m aa && git push
+ifconfig | grep broadcast >> addr.txt
+git add addr.txt && git  commit -m ip && git push
 
 
