@@ -65,3 +65,4 @@ bb
         inet 192.168.66.83  netmask 255.255.255.0  broadcast 192.168.66.255
         inet 192.168.68.58  netmask 255.255.255.0  broadcast 192.168.68.255
         inet 192.168.68.58  netmask 255.255.255.0  broadcast 192.168.68.255
+        inet 192.168.66.83  netmask 255.255.255.0  broadcast 192.168.66.255
