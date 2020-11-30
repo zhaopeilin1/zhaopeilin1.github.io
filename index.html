@@ -10,11 +10,26 @@
 
     <h1>运动养生</h1>
     <h1>编程相关</h1>
-    
-    <a href="/《如何想到又做到》读书笔记.txt" target="_blank" title="转到DIVCSS5主页">《如何想到又做到》读书笔记</a>
+   
+    <div id="huayun">
+    预产期 {{ date }} </br>
+    当前周数 {{ date }}</br>
+        
+  </div>
+    <a href="/《如何想到又做到》读书笔记.txt" target="_blank" title="转到DIVCSS5主页" >《如何想到又做到》读书笔记 </a>
     2019年1月31日20点13分。电脑学习群成立，成员有赵培淋，赵麒丰，李骅峰
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+    var app = new Vue({
+      el: '#huayun',
+      data: {
+        message: '2021-03-03',
+        currentDate: '27周2天',
+      }
+    })
+  </script>
 </body>
 </html>
