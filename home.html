@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>家用系统</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<script src="bootstrap.min.js"></script>
+    <script src="vue.js"></script>
+	<script src="axios.min.js"></script>
+    
+ </head>
+<body>
+
+
+
+
+<div class="don_login">
+    <div class="don_title">
+        <img src="./images/title.png" alt="">
+    </div>
+    <div class="login-group">
+        <h2>用户登录</h2>
+        <ul>
+            <li class="input_group"><i class="icon_user"></i><input type="text" v-model="username" placeholder="请输入用户名">
+            </li>
+            <li class="input_group"><i class="icon_pwd"></i><input type="password" v-model="password"
+                                                                   placeholder="请输入密码"></li>
+            <li class="btn_group">
+                <button class="login_btn" @click="login">登&nbsp;&nbsp;录</button>
+            </li>
+            <li class="btn_group">
+                <button class="reset_btn" @click="reset">重&nbsp;&nbsp;置</button>
+            </li>
+        </ul>
+    </div>
+    <div class="don_technical_support">
+        <img src="./images/technical_support.png" alt="">
+    </div>
+</div>
+
+<div class="query_books">
+    <div class="don_title">
+        <img src="./images/title.png" alt="">
+    </div>
+    <div class="login-group">
+        <h2>列表查询</h2>
+        <ul>
+            <li class="input_group"><i class="icon_user"></i><input type="text" v-model="username" placeholder="请输入名称">
+            </li>
+           
+            <li class="btn_group">
+                <button class="login_btn" @click="query">获取书籍列表</button>
+            </li>
+            <li class="btn_group">
+                <button class="reset_btn" @click="reset">重&nbsp;&nbsp;置</button>
+            </li>
+        </ul>
+    </div>
+	
+    <div class="don_technical_support">
+        <img src="./images/technical_support.png" alt="">
+    </div>
+	<ul id="book-list">
+  <li v-for="item in items" :key="item.Title">
+    {{ item.Title }}
+  </li>
+</ul>
+</div>
+
+    <h1>日用品</h1>
+   
+    <div id="huayun">
+    预产期 {{ date }} </br>
+    当前周数 {{ currentDate }}</br>
+        
+  </div>
+  <!--
+    <a href="/《如何想到又做到》读书笔记.txt" target="_blank" title="转到DIVCSS5主页" >《如何想到又做到》读书笔记 </a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+    
+
+    <script>
+    var app = new Vue({
+      el: '#huayun',
+      data: {
+        date: '2021-03-03',
+        currentDate: '11月30日,27周0天',
+      }
+    })
+  </script>
+  
+  
+  <script>
+  import {
+    mapMutations
+}
+from 'vuex';
+export
+default {
+        data() {
+            return {
+                loginForm:
+                {
+                    username:
+                    '',
+                    password: ''
+                }
+            };
+        },
+        methods: {...mapMutations(['changeLogin']),
+            login() {
+                let _this = this;
+                if (this.loginForm.username === '' || this.loginForm.password === '') {
+                    alert('账号或密码不能为空');
+                } else {
+                    this.axios({
+                        method: 'post',
+                        url: '/user/login',
+                        data: _this.loginForm
+                    }).then(res = >{
+                        console.log(res.data);
+                        _this.userToken = 'Bearer ' + res.data.data.body.token; // 将用户token保存到vuex中 
+                        _this.changeLogin({
+                            Authorization: _this.userToken
+                        });
+                        _this.$router.push('/home');
+                        alert('登陆成功');
+                    }).
+                    catch(error = >{
+                        alert('账号或密码错误');
+                        console.log(error);
+                    });
+                }
+            }
+        }
+    };
+  </script>
+  <script src="settings.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
